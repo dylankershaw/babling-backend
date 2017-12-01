@@ -1,5 +1,5 @@
 class UserChatsSerializer < ActiveModel::Serializer
   attributes :id
-  attributes :users
+  has_many :users
   # attributes :users, serializer: UserChatsUsersSerializer
 end

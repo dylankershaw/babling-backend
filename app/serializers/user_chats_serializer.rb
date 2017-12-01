@@ -1,3 +1,4 @@
 class UserChatsSerializer < ActiveModel::Serializer
-  attributes :id, :users
+  attributes :id
+  attributes :users, serializer: UserChatsUsersSerializer
 end

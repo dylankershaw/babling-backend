@@ -13,10 +13,10 @@ class Api::V1::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
+            headers['Header-Name'] = 'header value'
             render json: {
             status: 200,
             statusText: "Successfully created user",
-            headers['Header-Name'] = 'header value',
             user: @user
             }.to_json
         else

@@ -13,7 +13,7 @@ class Api::V1::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-            headers['Header-Name'] = 'header value'
+            response.headers["Headertitle"]="Headercontent"
             render json: {
             status: 200,
             statusText: "Successfully created user",

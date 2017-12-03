@@ -15,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
         if @user.save
             render json: {
             status: 200,
-            message: "Successfully created user",
+            statusText: "Successfully created user",
             user: @user
             }.to_json
         else

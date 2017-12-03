@@ -6,8 +6,8 @@ Rails.application.routes.draw do
       resources :chats, only: [:index, :show, :create, :update]
       resources :messages, only: [:index, :show, :create, :update]
       resources :translations, only: [:show, :create, :update]
-      post '/auth', to: 'auth#create'
-      get '/current_user', to: 'auth#show'
+      # post '/auth', to: 'auth#create'
+      # get '/current_user', to: 'auth#show'
     end
   end
 end

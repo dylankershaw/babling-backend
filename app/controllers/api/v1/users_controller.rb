@@ -11,7 +11,19 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def create
-        @user = User.create(user_params)
+        @user = User.new(user_params)
+        if @user.save
+            render json: {
+            status: 200,
+            message: "Successfully created user",
+            user: @user
+            }.to_json
+        else
+            render json: {
+            status: 500,
+            errors: list.errors
+            }.to_json
+        end
     end
 
     def update

@@ -15,7 +15,8 @@ class Api::V1::UsersController < ApplicationController
         if @user.save
             render json: {
             status: 200,
-            body: "Successfully created user",
+            statusText: "Successfully created user",
+            headers['Header-Name'] = 'header value',
             user: @user
             }.to_json
         else

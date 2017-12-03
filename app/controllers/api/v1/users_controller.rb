@@ -11,20 +11,7 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def create
-        @user = User.new(user_params)
-        if @user.save
-            response.headers["Headertitle"]="Headercontent"
-            render json: {
-            status: @user.id,
-            statusText: "Successfully created user",
-            user: @user
-            }.to_json
-        else
-            render json: {
-            status: 500,
-            errors: list.errors
-            }.to_json
-        end
+        @user = User.create(user_params)
     end
 
     def update

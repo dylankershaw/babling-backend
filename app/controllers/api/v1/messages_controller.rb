@@ -12,7 +12,8 @@ class Api::V1::MessagesController < ApplicationController
 
     def create
         @message = Message.create(message_params)
-        respond_with :api :v1, @message
+        # respond_with :api :v1, @message
+        render :text => @message.inspect
     end
 
     def update

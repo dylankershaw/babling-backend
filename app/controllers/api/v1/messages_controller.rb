@@ -27,7 +27,7 @@ class Api::V1::MessagesController < ApplicationController
 
     private
     def message_params
-        params.permit(:chat_id, :user_id)
+        params.permit(:chat_id, :user_name)
     end
 
 end

@@ -7,6 +7,8 @@ class Api::V1::TranslationsController < ApplicationController
 
     def create
         @translation = Translation.create(translation_params)
+        # associate the translation with the message
+        @translation.message = Message.last
     end
 
     def update

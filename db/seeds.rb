@@ -13,6 +13,7 @@ messages = Message.create([
     {chat_id: 2, sender_name: "Dylan"}
 ])
 
-# translations = Translation.create([
-#     {message_id: }
-# ])
+translations = Translation.create([
+    {message_id: 5, text: "hello babling"},
+    {message_id: 6, text: "yo world"}
+])

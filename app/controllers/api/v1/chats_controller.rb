@@ -17,7 +17,9 @@ class Api::V1::ChatsController < ApplicationController
     def update
         @chat = Chat.find(params[:id])
 
-        @chat.update(chat_params)
+        @chat.languages << params["languages"] if !@chat.languages.include?(params["languages"])
+        
+        # @chat.update(chat_params)
         if @chat.save
             render json: @chat
         else

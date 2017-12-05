@@ -12,6 +12,10 @@ class Api::V1::ChatsController < ApplicationController
 
     def create
         @chat = Chat.create(chat_params)
+        if @chat.languages.length === 0
+            @chat.languages << "en"
+            @chat.save
+        end
     end
 
     def update

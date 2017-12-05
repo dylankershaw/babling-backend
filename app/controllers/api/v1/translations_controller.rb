@@ -9,6 +9,10 @@ class Api::V1::TranslationsController < ApplicationController
         @translation = Translation.create(translation_params)
         # associate the translation with the message
         Message.last.translations << @translation
+        binding.pry
+        # check to see if there is a translation for each language within the chat
+        # if not, then call yandex and create translation(s)
+        # remainingChatLanguages = @translation.message.chat.languages
     end
 
     def update

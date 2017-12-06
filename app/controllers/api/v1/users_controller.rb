@@ -15,14 +15,12 @@ class Api::V1::UsersController < ApplicationController
         if @user.password === params[:password]
             render json: @user
         else
-            render status: 401
+            render json: {errors: "invalid password"}, status: 401
         end
     end
 
     def create
         
-        #### DOWNCASE USERNAME BEFORE CREATING
-
         @user = User.create(user_params)
     end
 

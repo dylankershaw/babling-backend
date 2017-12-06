@@ -14,10 +14,12 @@ class Api::V1::ChatsController < ApplicationController
 
     def create
         @chat = Chat.create(chat_params)
-        if @chat.languages.length === 0
-            @chat.languages << "en"
-            @chat.save
-        end
+        @chat.languages << "en" if @chat.languages.length === 0
+        user1 = User.find(params["user1id"])
+        user2 = User.find(params["user2id"])
+        @chat.users << user1
+        @chat.users << user2
+        @chat.save
     end
 
     def update
@@ -48,7 +50,10 @@ class Api::V1::ChatsController < ApplicationController
             
         end
 
-        @chat.languages << language
+        # adds the language to the chat if it doesn't already have it
+        if !@chat.languages.include?(language)
+            @chat.languages << language
+        end
 
         # @chat.update(chat_params)
         if @chat.save

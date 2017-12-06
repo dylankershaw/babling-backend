@@ -10,7 +10,19 @@ class Api::V1::UsersController < ApplicationController
         render json: @user
     end
 
+    def login
+        @user = User.find_by(username: params[:username].downcase)
+        if @user.password === params[:password]
+            render json: @user
+        else
+            render status: 401
+        end
+    end
+
     def create
+        
+        #### DOWNCASE USERNAME BEFORE CREATING
+
         @user = User.create(user_params)
     end
 

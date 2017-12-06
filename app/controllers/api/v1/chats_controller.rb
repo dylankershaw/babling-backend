@@ -22,14 +22,16 @@ class Api::V1::ChatsController < ApplicationController
 
     def update
         @chat = Chat.find(params[:id])
+        language = chat_params["languages"]
         
         # iterate through each of the chat's messages and translate to the new language
         @chat.messages.each do |message|
-            # check to see if the message already has a translation in that language
-            if !@chat.languages.include?(params["languages"])
-                # translate the message to french
-                translated_text = @@translator.translate message.translations.first.text, from: message.translations.first.language, to: chat_params["languages"]
-                language = chat_params["languages"]
+            
+            # returns true if the message does not already have a translation in the new language
+            if !@chat.languages.include?(language)
+                
+                # translates the text 
+                translated_text = @@translator.translate message.translations.first.text, from: message.translations.first.language, to: language
 
                 # create the translation
                 new_translation = Translation.create(
@@ -40,13 +42,13 @@ class Api::V1::ChatsController < ApplicationController
                 
                 # associate the translation with the message
                 message.translations << new_translation
-                message.save # is this necessary?
+                # message.save # is this necessary?
 
-                @chat.languages << language
-                @chat.save # is this necessary?
             end
-
+            
         end
+
+        @chat.languages << language
 
         # @chat.update(chat_params)
         if @chat.save

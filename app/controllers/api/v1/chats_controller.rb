@@ -44,7 +44,6 @@ class Api::V1::ChatsController < ApplicationController
                 
                 # associate the translation with the message
                 message.translations << new_translation
-                # message.save # is this necessary?
 
             end
             
